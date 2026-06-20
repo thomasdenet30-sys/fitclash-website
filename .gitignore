@@ -1,0 +1,17 @@
+# macOS / OS
+.DS_Store
+Thumbs.db
+
+# Éditeurs
+.vscode/
+.idea/
+*.swp
+*~
+
+# Logs / divers
+*.log
+
+# Plateformes de déploiement (générés, ne pas committer)
+.vercel/
+.wrangler/
+node_modules/
