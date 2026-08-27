@@ -1,0 +1,9 @@
+# Ce que le site ne doit pas publier.
+# Sans ce fichier, `wrangler deploy` téléverse aussi les dossiers cachés :
+# .git se retrouvait servi sur fittclash.com, historique du dépôt compris.
+**/.git
+**/.gitignore
+**/.wrangler
+**/.DS_Store
+.assetsignore
+wrangler.jsonc

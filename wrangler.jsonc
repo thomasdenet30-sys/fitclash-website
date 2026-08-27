@@ -1,0 +1,10 @@
+{
+  // Le site est un Worker « assets-only » : aucun script, que des fichiers
+  // statiques servis depuis la racine du dépôt. Cette config rend le
+  // déploiement reproductible — `npx wrangler deploy` suffit.
+  "name": "fitclash-website",
+  "compatibility_date": "2026-08-26",
+  "assets": {
+    "directory": "./"
+  }
+}

@@ -38,24 +38,29 @@ par nature — c'est tout l'objet du fichier. Toute modification doit être
 redéployée sur Cloudflare Pages pour être prise en compte, et Google peut
 mettre jusqu'à 24 h à le relire.
 
-## Déployer sur Cloudflare Pages (recommandé)
+## Déployer
 
-### Option A — Glisser-déposer (le plus rapide)
-1. Va sur **dash.cloudflare.com → Workers & Pages → Create → Pages → Upload assets**.
-2. Nomme le projet `fitclash` puis **glisse le contenu du dossier `fitclash-website/`** (les fichiers, pas le dossier parent).
-3. Clique **Deploy**. Tu obtiens une URL `*.pages.dev` pour tester.
-4. **Custom domains → Set up a domain → `fittclash.com`** (et `www.fittclash.com`).
-   - Si ton domaine est déjà géré par Cloudflare : l'enregistrement DNS est créé automatiquement.
-   - Sinon, ajoute le domaine à Cloudflare (change les nameservers chez ton registrar) puis répète.
+Le site est un **Worker Cloudflare « assets-only »** nommé `fitclash-website`
+(compte `ecom59657@gmail.com`, zone `fittclash.com`) — pas un projet Pages,
+malgré ce que laissait entendre l'ancienne version de ce README. La config vit
+dans `wrangler.jsonc`, donc un déploiement tient en une commande :
 
-### Option B — via Git
-1. Pousse ce dossier sur un repo GitHub.
-2. **Pages → Connect to Git** → sélectionne le repo.
-3. Réglages de build :
-   - **Framework preset** : `None`
-   - **Build command** : *(vide)*
-   - **Build output directory** : `/` (racine)
-4. Deploy, puis ajoute le domaine `fittclash.com` (Custom domains).
+```bash
+npx wrangler deploy
+```
+
+Deux pièges rencontrés le 2026-08-28 :
+
+- **`.assetsignore` est obligatoire.** Sans lui, `wrangler` téléverse aussi les
+  dossiers cachés : `.git` était servi sur `fittclash.com`, historique du dépôt
+  compris. Le fichier l'exclut, avec `.gitignore`, `.wrangler` et la config.
+- **Le cache `.wrangler/cache/` retient le dernier compte utilisé.** Après un
+  `wrangler login` sur un autre compte, `deploy` échoue en
+  « Authentication error [code: 10000] » même une fois reconnecté au bon
+  compte. Supprimer `.wrangler/cache` règle le problème.
+
+Le dépôt n'est **pas** connecté à Cloudflare : pousser sur GitHub ne déploie
+rien, il faut lancer `wrangler deploy`.
 
 ## Déployer sur Vercel (alternative)
 1. `vercel` (CLI) dans le dossier, ou **Add New → Project → Import**.
