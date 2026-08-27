@@ -1,0 +1,3 @@
+# Autorise Google AdMob à vendre l'inventaire publicitaire de Fit Clash.
+# Sans ce fichier, AdMob laisse l'app « non validée » et bride la diffusion.
+google.com, pub-7977656042089301, DIRECT, f08c47fec0942fa0

@@ -23,7 +23,20 @@ anton.ttf         (police d'affichage embarquée, aucune requête externe)
 favicon.png
 robots.txt
 sitemap.xml
+app-ads.txt       (validation AdMob — voir plus bas)
 ```
+
+## app-ads.txt
+
+`https://fittclash.com/app-ads.txt` déclare que Google AdMob a le droit de
+vendre l'inventaire publicitaire de l'app. Google le lit à la **racine du
+domaine indiqué sur la fiche App Store** : tant qu'il manque, AdMob laisse
+l'app « non validée » et bride la diffusion.
+
+L'identifiant `pub-7977656042089301` est celui du compte AdMob ; il est public
+par nature — c'est tout l'objet du fichier. Toute modification doit être
+redéployée sur Cloudflare Pages pour être prise en compte, et Google peut
+mettre jusqu'à 24 h à le relire.
 
 ## Déployer sur Cloudflare Pages (recommandé)
 
